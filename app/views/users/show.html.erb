@@ -1,0 +1,15 @@
+<b>Name:</b> <%= @user.fname %> <%= @user.lname %></br>
+<b>Email:</b> <%= @user.email %>
+
+<hr size=2>
+<b>Groups:</b>
+<br>
+<br>
+
+<% @groups.each do |group| %>
+ <%= link_to group.name, group %>
+ <br>
+<% end %>
+
+<hr size=2>
+<%= link_to "Edit Profile", edit_user_registration_path%>

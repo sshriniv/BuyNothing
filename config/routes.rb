@@ -1,9 +1,45 @@
 Rails.application.routes.draw do
+
+  get 'users/index'
+
+  get 'users/show'
+
+  resources :countries
+
+  resources :states
+
+  resources :cities
+
+  resources :groups do
+    resources :posts
+  end
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :comments do
+    resources :comments
+  end
+
+  resources :memberships
+
+  devise_for :users
+
+  devise_scope :user do
+    get 'users/sign_out' => "devise/sessions#destroy"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'pages#home'
+
+  match '/users',   to: 'users#index',   via: 'get'
+  match '/users/:id',     to: 'users#show',       via: 'get'
+
+  get 'tags/:tag', to: 'posts#index', as: :tag
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

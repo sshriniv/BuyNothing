@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<% @group_posts.each do |group_post| %>
+   <%= group_post.id %>
+   <b><%= link_to group_post.user.fullname,users_show_path(:id=>group_post.user.id) %></b> 
+   <div class = "posted_at"> posted a message on <%= group_post.posted_at %> </div></br>
+   <%= group_post.description %>
+</p>
+<% end %>

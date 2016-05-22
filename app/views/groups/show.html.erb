@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<strong><h1></strong><%= @group.name %> </h1></br>
+<%= @group.description %>
+
+
+<% if !@member_of_current_group %>
+ <%= render "request_membership" %>
+<% end %></br>
+
+
+<hr size=2>
+<b>Members:</b>	<br><br>
+<% @members.each do |member| %>
+  <%= link_to member.fname+' '+member.lname,users_show_path(:id=>member.id) %></br>
+<%end%>
+
+
+</br><hr size=2>
+<%= render "post_buttons" %>
+<%= render "new_giveaway_modal" %>
+<%= render "group_activity"%>
+
+<br><br>
+
+<%= link_to 'Edit Group', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

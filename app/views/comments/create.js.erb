@@ -1,0 +1,4 @@
+<%# Append post comment via ajax and clear text box%>
+$('<%= @target_css_id%>').append("<%= j render @comment%>");
+$('#cancel-comment').click(); //Applicable for comment's comment
+$('<%= @target_css_id%>')	.next().find('#comment_body').val("");

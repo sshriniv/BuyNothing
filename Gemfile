@@ -43,3 +43,14 @@ group :development, :test do
   gem 'spring'
 end
 
+
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'simple_form'
+gem 'devise'
+gem 'jquery-turbolinks'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'rmagick'
+gem 'carrierwave-aws'
+gem 'dotenv-rails'
+gem 'fog-aws'
+

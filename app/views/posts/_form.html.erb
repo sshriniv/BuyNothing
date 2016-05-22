@@ -1,0 +1,11 @@
+<%= simple_form_for [group, post] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :description, placeholder: 'Post Something', label: false %>
+    <%= f.input :tag_list%>
+  </div>
+
+  <%= f.button :submit, 'Post' %>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<% end %>

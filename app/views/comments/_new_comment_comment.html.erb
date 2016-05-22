@@ -1,0 +1,14 @@
+<%= simple_form_for [@parent,@comment], remote:true do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.hidden_field :group_id, :value => @group_id %>
+    <%= f.input :body, placeholder: 'Reply', label: false, id: "new-coment-comment",:input_html => { :cols => 1, :rows => 1 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Post Reply', id: "post-comment"%>
+    <%= link_to "Cancel", "#", id: "cancel-comment" %>
+  </div>
+
+<% end %>
