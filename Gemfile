@@ -53,4 +53,5 @@ gem 'rmagick'
 gem 'carrierwave-aws'
 gem 'dotenv-rails'
 gem 'fog-aws'
+gem 'dotenv-rails'
 
