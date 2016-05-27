@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        @posted_at = stringify_time(@group.created_at)
+        #@posted_at = stringify_time(@group.created_at)
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else

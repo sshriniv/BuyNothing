@@ -1,4 +1,4 @@
-<%= simple_form_for [group, post],:html => { :multipart => true } do |f| %>
+<%= simple_form_for [group, post],html: {multipart: true} do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -6,7 +6,7 @@
     <%= f.input :description, placeholder: 'Tell us about your giveaway', label: false %>
     <%= f.input :tag_list%>
     <%= f.hidden_field :post_type, :value => 'G' %>
-    <%= file_field_tag "pictures[]", type: :file, multiple: true, class: "form-control"%>
+    <%= file_field_tag "images[]", type: :file, multiple: true, class: "form-control"%>
   </div>
 
   

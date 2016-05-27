@@ -1,7 +1,7 @@
 <strong><h1></strong><%= @post.title %> </h1></br>
 
 <% @post.pictures.each do |picture| %>
-  <%= image_tag(picture.image.medium)%>
+  <%=image_tag picture.image.url(:original) %>
 <% end %>
 
 </br></br>

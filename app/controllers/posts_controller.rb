@@ -15,8 +15,8 @@ class PostsController < ApplicationController
 
 		respond_to do |format|
           if @post.save
-          	if params[:pictures]
-          		params[:pictures].each {|image|
+          	if params[:images]
+          		params[:images].each {|image|
           			@post.pictures.create(image: image)
           		}
           	end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 	def show
 		@current_group = params[:group_id]
 		@post = Post.find(params[:id])
-
+        @pictures = @post.pictures
 	end
 
     private
