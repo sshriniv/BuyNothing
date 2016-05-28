@@ -1,4 +1,8 @@
 class MembershipsController < ApplicationController
+	
+	def index
+		@current_user_groups = current_user.groups
+    end
 
 	def create
 		logged_in_user = current_user

@@ -1,22 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Groups</h1>
-</br>
+
 <% @groups.each do |group| %>
-
-<p>
-  <strong>Name:</strong>
-  <%= link_to group.name, group %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= group.description %>
+  <h1><%= link_to group.name, group %></h1>
 </p>
 
   <%= link_to 'Edit', edit_group_path(group) %>|
   <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <hr size=2>
 
 <%end%>
 

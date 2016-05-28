@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :comments do
     resources :comments
   end
+  
+  resources :users do
+    resources :groups
+  end
 
   resources :memberships
 

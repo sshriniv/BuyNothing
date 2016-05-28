@@ -8,10 +8,11 @@ class Post < ActiveRecord::Base
   
 	has_many :comments, :as => :commentable
 
-  has_many :taggings, :as => :taggable
+    has_many :taggings, :as => :taggable
 	has_many :tags, :through => :taggings
 
-  has_many :pictures, dependent: :destroy
+    #has_many :pictures, :as => :imageable, dependent: :destroy
+    has_many :pictures, dependent: :destroy
 
 	def get_post
      self.is_a?(Post) ? self : self.commentable.get_post
