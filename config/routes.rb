@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
 
   get 'users/index'
-
   get 'users/show'
-
-  resources :countries
-
-  resources :states
-
-  resources :cities
+  match '/users',   to: 'users#index',   via: 'get'
 
   resources :groups do
     resources :posts
@@ -20,10 +14,6 @@ Rails.application.routes.draw do
 
   resources :comments do
     resources :comments
-  end
-  
-  resources :users do
-    resources :groups
   end
 
   resources :memberships
@@ -39,9 +29,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'pages#home'
-
-  match '/users',   to: 'users#index',   via: 'get'
-  match '/users/:id',     to: 'users#show',       via: 'get'
 
   get 'tags/:tag', to: 'posts#index', as: :tag
 

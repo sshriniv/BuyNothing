@@ -1,15 +1,12 @@
-<b>Name:</b> <%= @user.fname %> <%= @user.lname %></br>
-<b>Email:</b> <%= @user.email %>
+<%=image_tag @user.avatar.url(:original) %>
+<h2> <%= @user.fname %> <%= @user.lname %></br></h2>
+<h2><small>Email: </small><%= @user.email %></h2>
 
 <hr size=2>
-<b>Groups:</b>
-<br>
-<br>
+<h2><small>Groups</small></h2>
 
 <% @groups.each do |group| %>
- <%= link_to group.name, group %>
- <br>
+ <h3><%= link_to group.name, group %></h3>
 <% end %>
-
-<hr size=2>
-<%= link_to "Edit Profile", edit_user_registration_path%>
+</br></br>
+<%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "btn btn-primary"%>

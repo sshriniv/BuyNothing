@@ -4,10 +4,10 @@
 <% @group.posts.each do |group_post| %>
   <% if group_post.persisted? %>
     <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+      <%= link_to group_post.title, group_post_path(@group,group_post)%></br>
+      <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
       <b><%= link_to group_post.user.fullname,users_show_path(:id=>group_post.user.id) %></b> 
       <div class = "posted_at"> posted a message on <%= group_post.posted_at %> </div></br>
-      <%= link_to group_post.title, group_post_path(@group,group_post)%></br></br>
-      <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
   
 
       </br><b>Comments</b></br></br>
