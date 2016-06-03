@@ -6,7 +6,11 @@ class Group < ActiveRecord::Base
 	has_many :users, through: :memberships
 	has_many :memberships
 	has_many :posts
-	has_many :pictures, :as => :imageable, dependent: :destroy
+	has_attached_file :group_avatar
+  
+	validates_attachment_content_type :group_avatar,styles: { medium: "300x300>", thumb: "100x100>" },
+	content_type:  /^image\/(png|gif|jpeg)/,
+	message: "Only images allowed"
 
 
 	def add_member(user)

@@ -1,0 +1,27 @@
+<%# Show Posts (with comments) for current Group %>
+<% @current_user_groups.each do |current_user_group| %>
+   <% current_user_group.posts.each do |group_post| %>
+    <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+      <%= link_to group_post.title, group_post_path(current_user_group,group_post)%></br>
+      <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
+      </br><b><%= link_to group_post.user.fullname,users_show_path(:id=>group_post.user.id) %></b> 
+      <div class = "posted_at"> posted on <%=link_to current_user_group.name,current_user_group%></div></br>
+      <div class = "posted_at"><%= group_post.posted_at %></div></br>
+      
+      
+      </br><b>Comments</b></br></br>
+      <div class = "comments-list" id = "post-<%=group_post.id%>-comments-list">
+  	    <%= render :partial => "comments/comment", :collection => group_post.comments,:locals => {:group_id => current_user_group.id}%>
+      </div>
+      <%# This does not go the 'new' action of Comments Controller
+      A new comment object is created and passed via the locals hash
+      Since the Comments route is nested within the Posts route, the "simple_form_for [post, comment]" notiation in comments/new_post_comment partial will call create a form that passes the post_id and comment_id in the request url upon submit - i.e. the new_post_comment route is called.
+      Hence the submit button calls the create action on the comments controller with post_id and comments_id as params. %>
+      <div class = 'group-post-new-comment'>
+        <%= render :partial => "comments/new_post_comment", :locals => {:group_id => current_user_group.id, :post => group_post, :comment => group_post.comments.new} %></br></br>
+      </div>
+      
+    </div>  
+    <hr size=2> </br>
+  <% end %>
+<% end %>

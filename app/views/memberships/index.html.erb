@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
-<% @current_user_groups.each do |group| %>
-  <h1><%= link_to group.name, group %></h1>
-<%end%>
+
+
+
+<table class='table borderless'>
+  <% @current_user_groups.each do |group| %>
+    <tr>
+        <td><%=image_tag group.group_avatar.url(:original), size: "50x50",:class => "img-responsive" %></td>
+        <td><h2><%= link_to group.name, group %></h2></td>
+    </tr>
+  <%end%>
+</table>

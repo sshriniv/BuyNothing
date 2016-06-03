@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531232230) do
+ActiveRecord::Schema.define(version: 20160603001107) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -44,8 +44,12 @@ ActiveRecord::Schema.define(version: 20160531232230) do
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "group_avatar_file_name"
+    t.string   "group_avatar_content_type"
+    t.integer  "group_avatar_file_size"
+    t.datetime "group_avatar_updated_at"
   end
 
   create_table "memberships", force: :cascade do |t|

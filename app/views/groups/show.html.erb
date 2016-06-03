@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<!--<div class="jumbotron" style="background-image: url(<%= @group.group_avatar.url(:original) %>);">
+   <div class="container">
+   <h1>About</h1>
+   </div>
+</div> !-->
+
+<%=image_tag @group.group_avatar.url(:original),:class => "img-responsive" %>
+
+
 <strong><h1></strong><%= @group.name %> </h1></br>
 <%= @group.description %>
 
