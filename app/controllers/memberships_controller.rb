@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
 	
 	def index
-		@current_user_groups = current_user.groups
+		@groups = current_user.groups
     end
 
 	def create

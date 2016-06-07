@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<%@groups.each do |group| %>
+  <div class = "row">
+    <div class="col-md-1">
+      </br><%=image_tag group.group_avatar.url(:original), size: "100x10",:class => "img-responsive" %>
+    </div>
+    
+    <div class="col-md-11">
+      <h2><%= link_to group.name, group %></h2>
+    </div>
+  </div>
+<%end%>

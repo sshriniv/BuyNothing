@@ -6,9 +6,20 @@
   <%# Initialize the reply_id css id that is used in the link_to 'Reply' section%>	
   <%reply_id = 'reply-link-comment-'+comment.id.to_s%>
 
-  <b><%= link_to comment.user.fullname,users_show_path(:id=>comment.user.id) %></b> <%= comment.body %></br>
-  <div class = "posted_at"><%= comment.posted_at%></div>
-  <%= link_to 'Reply', new_comment_comment_path(comment), class: 'reply_link', id:reply_id, remote: true %>
+  <div class = "row">
+    <div class="col-md-1">
+      <%=image_tag comment.user.avatar.url(:original), size: "100x10",:class => "img-responsive" %>
+    </div>
+    
+    <div class="col-xs-10">
+      <b><%= link_to comment.user.fullname,users_show_path(:id=>comment.user.id) %></b> <%= comment.body %>
+      <div class = "posted_at"><%= comment.posted_at%></div></br>
+      <%= link_to 'Reply', new_comment_comment_path(comment), class: 'reply_link', id:reply_id, remote: true %><br><br>
+    </div>
+  </div>
+  
+
+  
 
   <ul class="comments-list" id = "comment-<%=comment.id%>-comments-list">
     <% unless comment.comments.empty? %>
