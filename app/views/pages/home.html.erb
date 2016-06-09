@@ -1,5 +1,12 @@
-<h1>Activity</h1></br></br></br>
 <p id="notice"><%= notice %></p>
-<%= render "all_activity"%>
+<%if current_user %>
+  <%if @current_user_groups_posts == 0 %>
+    <%= render "no_activity"%>
+  <%else%>
+    <%= render "all_activity"%>
+  <%end%>
+<%else%>
+  <%=render "home_no_login"%>
+<%end%>
 
 
