@@ -45,6 +45,13 @@ class PostsController < ApplicationController
 		@current_group = params[:group_id]
 		@post = Post.find(params[:id])
         @pictures = @post.pictures
+        @win = Win.new
+        
+        #array of users commented on a post
+        @commented_users = Set.new
+        @post.comments.each do |comment|
+        	@commented_users.add(comment.user)
+        end
 	end
 
     private

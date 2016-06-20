@@ -1,0 +1,11 @@
+<div class = "row">
+  <div class="col-md-1">
+    <%=image_tag post.user.avatar.url(:original), size: "100x10",:class => "img-responsive" %>
+  </div>
+        
+  <div class="col-xs-10">
+    <%= link_to post.user.fullname,users_show_path(:id=>post.user.id) %></b> 
+    <div class = "posted_at"> posted on <%=link_to post.group.name,post.group%></div></br>
+    <div class = "posted_at"><%= post.posted_at %></div></br></br>
+  </div>
+</div>

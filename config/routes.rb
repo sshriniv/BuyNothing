@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'users/show'
   match '/users',   to: 'users#index',   via: 'get'
+  
+  resources :wins
 
   resources :groups do
     resources :posts

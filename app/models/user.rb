@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :posts
   has_many :comments
+  has_many :wins
   has_attached_file :avatar
   
 	validates_attachment_content_type :avatar,styles: { medium: "300x300>", thumb: "100x100>" },

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603001107) do
+ActiveRecord::Schema.define(version: 20160616233709) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -72,12 +72,13 @@ ActiveRecord::Schema.define(version: 20160603001107) do
 
   create_table "posts", force: :cascade do |t|
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "user_id"
     t.string   "group_id"
     t.string   "post_type"
     t.string   "title"
+    t.integer  "status",      default: 0
   end
 
   create_table "states", force: :cascade do |t|
@@ -123,5 +124,13 @@ ActiveRecord::Schema.define(version: 20160603001107) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "wins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

@@ -1,0 +1,21 @@
+
+  <%= simple_form_for win do |f| %> 
+  
+    <%= f.hidden_field :post_id, :value => post.id %>
+    <div class = "row">
+      <div class="col-sm-4">
+         <%= f.input :user_id,:collection => @commented_users,:label_method => :fname,:value_method => :id,:label => "Recipient" ,:include_blank => false, label: false %>
+      </div>
+    </div>
+    </br>
+  
+    <div class = "row">
+      <div class="col-sm-4">
+         <div class="form-group">
+            <%= f.input :message, placeholder: 'Message', label: false %>
+         </div>
+      </div>
+    </div>
+  
+    <%= f.button :submit, 'Submit', :class => 'btn btn-primary'%>
+ <% end %>
