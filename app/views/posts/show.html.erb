@@ -1,21 +1,39 @@
-<strong><h1></strong><%= @post.title %> </h1></br>
+<strong><h1></strong><%= @post.title %> </h1>
 
 <% @post.pictures.each do |picture| %>
   <%=image_tag picture.image.url(:original) %>
 <% end %>
+
+
 </br></br>
 
 
 <div class = "post-<%=@post.id%>" id = "post-<%=@post.id%>">
   <%= @post.description %> </br></br>
   <%= render :partial => "posts/posted_by",:locals => {:post => @post}%>
-  <hr size=2>
+  
   <div class = "row">
     <div class="col-xs-12">
       <%=raw @post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
     </div>
   </div>
+  
+  <%= render :partial => "posts/post_status",:locals => {:post => @post}%>
+  
+  <%if @post.user == current_user && @post.pending?%>
+    <div class = "row">
+      <div class = "col-xs-2">
+        </br><%= render "close_giveaway_button" %>    
+        </br><%= render :partial => "close_giveaway_form",:locals => {:post => @post}%>
+      </div>
+    </div>
+  <%end%>
+  
+  <hr size=2>
+  
   <%= render :partial => "comments/render_comments",:locals => {:post => @post}%>
 </div>
 
-<%= render :partial => "pick_recipient", :locals => {:win => @win, :post => @post} %>
+<%if @post_owner && !@post.win%>
+ <%= render :partial => "pick_recipient", :locals => {:win => @win, :post => @post} %>
+<%end%>

@@ -1,3 +1,15 @@
 // Place all the styles related to the groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-status-active span {
+  background: #5cb85c;
+}
+
+.post-status-pending span {
+  background: #f0ad4e;
+}
+
+.post-status-closed span {
+  background: #d9534f;
+}

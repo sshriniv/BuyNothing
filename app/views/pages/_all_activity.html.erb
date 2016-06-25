@@ -1,7 +1,7 @@
 <h1>Activity</h1></br></br></br>
 <%# Show Posts (with comments) for current Group %>
 <% @current_user_groups.each do |current_user_group| %>
-   <% current_user_group.posts.each do |group_post| %>
+   <% current_user_group.posts.sorted_descending.each do |group_post| %>
     <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
       
       <%= render :partial => "posts/posted_by",:locals => {:post => group_post}%>
@@ -12,6 +12,10 @@
           <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
         </div>
       </div>
+      
+     <div class = "post-status-<%=group_post.status%>">
+       <span><%=group_post.status.capitalize%></span>
+     </div>
       
       <%= render :partial => "comments/render_comments",:locals => {:post => group_post}%>
       

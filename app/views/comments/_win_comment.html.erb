@@ -1,0 +1,23 @@
+
+<!-- The 'Relpy' link calls the new_comment_comment_path rotue. This route calls the 'new' action on the comments controller and passing in the comment_id(parent) in the params hash. However, the 'remote: true' option causes the request to be submitted via ajax. This expects a javascript response. Hence the new controller action responds with 'new.js.erb' instead of the default html response - 'new.html.erb'. The new.js.erb modifies the DOM to dynamically attach the 'new_comment_comment' partial.-->
+
+<div class="comment" id= "comment-<%=comment.id%>" >
+ 
+  <%# Initialize the reply_id css id that is used in the link_to 'Reply' section%>	
+  <%reply_id = 'reply-link-comment-'+comment.id.to_s%>
+
+  <div class = "row">
+    <div class="col-md-1">
+      <%=image_tag comment.user.avatar.url(:original), size: "100x10",:class => "img-responsive" %>
+    </div>
+    
+    <div class="col-xs-10">
+      <b><%= link_to comment.user.fullname,users_show_path(:id=>comment.user.id) %></b> <%= comment.body %>
+      <div class = "posted_at"><%= comment.posted_at%></div></br>
+    </div>
+  </div>
+  
+  </br>
+
+
+</div>

@@ -1,4 +1,7 @@
-</br><b>Comments</b></br></br>
+</br><b><%=pluralize post.comments.count, "Request"%></b></br></br>
+<div class="panel panel-default">
+<div class="panel-heading"><%=pluralize post.comments.count, "Request"%></div>
+<div class="panel-body">
 <div class = "comments-list" id = "post-<%=post.id%>-comments-list">
   <%= render :partial => "comments/comment", :collection => post.comments,:locals => {:group_id => post.group_id}%>
 </div>
@@ -9,4 +12,6 @@ Since the Comments route is nested within the Posts route, the "simple_form_for 
 Hence the submit button calls the create action on the comments controller with post_id and comments_id as params. %>
 <div class = 'group-post-new-comment'>
   <%= render :partial => "comments/new_post_comment", :locals => {:group_id => post.group_id, :post => post, :comment => post.comments.new} %></br></br>
+</div>
+</div>
 </div>

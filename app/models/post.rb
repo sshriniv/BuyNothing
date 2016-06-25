@@ -35,5 +35,8 @@ class Post < ActiveRecord::Base
         Tag.where(name: n.strip).first_or_create!
     end
   end
+  
+  
+  scope :sorted_descending, -> { order(created_at: :desc) }
 
 end

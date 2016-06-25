@@ -1,0 +1,19 @@
+<strong><h1></strong>You won <%= @win.post.title %>! </h1></br>
+
+<% @win.post.pictures.each do |picture| %>
+  <%=image_tag picture.image.url(:original) %>
+<% end %>
+</br></br>
+
+<div class = "win-<%=@win.id%>" id = "win-<%=@win.id%>">
+  <%= @win.post.description %> </br></br>
+  <%= render :partial => "posts/posted_by",:locals => {:post => @win.post}%>
+  <%= render :partial => "posts/post_status",:locals => {:post => @win.post}%>
+  <hr size=2>
+  <div class = "row">
+    <div class="col-xs-12">
+      <%=raw @win.post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
+    </div>
+  </div>
+  <%= render :partial => "comments/render_win_comments",:locals => {:win => @win}%>
+</div>

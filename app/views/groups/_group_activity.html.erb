@@ -1,22 +1,24 @@
 </br></br><b>Activity:</b>  <br><br>
 
 <%# Show Posts (with comments) for current Group %>
-<% @group.posts.each do |group_post| %>
+<% @group.posts.sorted_descending.each do |group_post| %>
   <% if group_post.persisted? %>
-    <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+          <%= render :partial => "posts/posted_by",:locals => {:post => group_post}%>
       
-      <%= render :partial => "posts/posted_by",:locals => {:post => group_post}%>
+          <div class = "row">
+            <div class="col-xs-12">
+              <%= link_to group_post.title, group_post_path(@group,group_post)%>
+              <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
+            </div>
+          </div>
       
-      <div class = "row">
-        <div class="col-xs-12">
-          <%= link_to group_post.title, group_post_path(@group,group_post)%></br>
-          <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
-        </div>
-      </div>
-  
-      <%= render :partial => "comments/render_comments",:locals => {:post => group_post}%>
+          <%= render :partial => "posts/post_status",:locals => {:post => group_post}%>  
+          <%= render :partial => "comments/render_comments",:locals => {:post => group_post}%>
+        </div>  
+      </div>  
     </div>  
-
-    <hr size=2> </br>
   <% end %>
 <% end %>

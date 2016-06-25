@@ -13,11 +13,14 @@ class CommentsController < ApplicationController
 		@comment = @parent.comments.create(comments_params)
 		@group = get_post(@parent).group
 		@comment.user = current_user
+		logger.debug "after comment.user set: #{@comment.user}"
 
 		if @parent.is_a?(Post)
 			@target_css_id = '#post-'+@parent.id.to_s+' '+'#post-'+@parent.id.to_s+'-comments-list'
 		elsif @parent.is_a?(Comment)
 			@target_css_id = '#comment-'+@parent.id.to_s+' '+'#comment-'+@parent.id.to_s+'-comments-list'
+		elsif @parent.is_a?(Win)
+		    @target_css_id = '#win-'+@parent.id.to_s+' '+'#win-'+@parent.id.to_s+'-comments-list'
 		end
 
 		@group_post_tag = '.group-post-'+@parent.id.to_s
@@ -40,13 +43,14 @@ class CommentsController < ApplicationController
 	def get_parent
 		@parent = Post.find_by_id(params[:post_id]) if params[:post_id]
 		@parent = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+        @parent = Win.find_by_id(params[:win_id]) if params[:win_id]
 
 		redirect_to root_path unless defined?(@parent)
 	end
 
 
 	def get_post(parent)
-      parent.is_a?(Post) ? parent : get_post(parent.commentable)
+      parent.is_a?(Post) ? parent : parent.is_a?(Win) ? parent.post : get_post(parent.commentable)
 	end
 
 	#$('#comment_15').after('<%= j render ("new_comment_comment")%>');

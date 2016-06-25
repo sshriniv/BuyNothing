@@ -1,0 +1,15 @@
+<%# Since the Comments route is nested within the Wins route, the "simple_form_for [win, comment]" notation in this partial will call the 'create' action in comments controller passing win_id and comment_id in the request url upon submit - i.e. the new_win_comment route is called.
+Hence, the submit button calls the create action on the comments controller with win_id and comments_id as params. %>
+
+<%= simple_form_for [win, comment],remote: true do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.hidden_field :group_id, :value => group_id %>
+    <%= f.input :body, placeholder: 'Reply', label: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Post Reply'%>
+  </div>
+<% end %>

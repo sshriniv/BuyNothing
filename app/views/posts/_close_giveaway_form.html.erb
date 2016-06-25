@@ -1,0 +1,24 @@
+<div class="modal fade" id="close-giveaway-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Close Giveaway</h4>
+        <div class="modal-body">
+          <p>This confirms <%=post.win.user.fname%> has picked up your item. Are you sure you want to close the giveaway?</p>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <%= simple_form_for post do |f| %>
+          <%= f.error_notification %>
+          <%= f.hidden_field :post_id, :value => post.id %>
+          <%= f.button :submit, 'Close Giveaway' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <%end%>
+      </div>
+      
+    </div>
+  </div>
+</div>
