@@ -2,24 +2,25 @@
 <%# Show Posts (with comments) for current Group %>
 <% @current_user_groups.each do |current_user_group| %>
    <% current_user_group.posts.sorted_descending.each do |group_post| %>
-    <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+     <div class="panel panel-default">
+       <div class="panel-body">
+         <div class = "post-<%=group_post.id%>" id = "post-<%=group_post.id%>">
+           <%= render :partial => "posts/posted_by",:locals => {:post => group_post}%>
       
-      <%= render :partial => "posts/posted_by",:locals => {:post => group_post}%>
+           <div class = "row">
+             <div class="col-xs-12">
+               </br><%= link_to group_post.title, group_post_path(current_user_group,group_post)%></br>
+                 <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
+             </div>
+           </div>
       
-      <div class = "row">
-        <div class="col-xs-12">
-          </br><%= link_to group_post.title, group_post_path(current_user_group,group_post)%></br>
-          <%=raw group_post.tag_list.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip), {:class => "tags"} }.join(", ") %>
-        </div>
-      </div>
+           <div class = "post-status-<%=group_post.status%>">
+             <span><%=group_post.status.capitalize%></span>
+           </div>
       
-     <div class = "post-status-<%=group_post.status%>">
-       <span><%=group_post.status.capitalize%></span>
+           <%= render :partial => "comments/render_comments",:locals => {:post => group_post}%>
+         </div>  
+       </div>
      </div>
-      
-      <%= render :partial => "comments/render_comments",:locals => {:post => group_post}%>
-      
-    </div>  
-    <hr size=2> </br>
   <% end %>
 <% end %>

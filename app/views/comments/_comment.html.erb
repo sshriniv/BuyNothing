@@ -12,8 +12,9 @@
       </div>
     
       <div class="col-xs-10">
-        <b><%= link_to comment.user.fullname,users_show_path(:id=>comment.user.id) %></b> <%= comment.body %>
+        <b><%= link_to comment.user.username,users_show_path(:id=>comment.user.id) %></b>
         <div class = "posted_at"><%= comment.posted_at%></div></br>
+        <%= comment.body %>
         <%= link_to 'Reply', new_comment_comment_path(comment), class: 'reply_link', id:reply_id, remote: true %><br><br>
       </div>
     </div>
